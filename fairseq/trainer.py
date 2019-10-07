@@ -230,6 +230,8 @@ class Trainer(object):
         if load_dataset:
             print('| loading train data for epoch {}'.format(epoch))
             self.task.load_dataset(self.args.train_subset, epoch=epoch, combine=combine)
+        print('Task and positions: {} - {}'.format(self.task, self.task.max_positions()))
+        print('Model and positions: {} - {}'.format(self.model, self.model.max_positions()))
         return self.task.get_batch_iterator(
             dataset=self.task.dataset(self.args.train_subset),
             max_tokens=self.args.max_tokens,
